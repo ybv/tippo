@@ -10,6 +10,9 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var defaultTipSegment: UISegmentedControl!
+    var defaults = NSUserDefaults.standardUserDefaults()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +24,11 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func defaltTipAmountChnaged(sender: AnyObject) {
+        println(sender.selectedSegmentIndex)
+        defaults.setInteger(sender.selectedSegmentIndex, forKey: "default_tip")
+        defaults.synchronize()
+    }
 
     /*
     // MARK: - Navigation

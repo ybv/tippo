@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var billAmountField: UITextField!
     @IBOutlet weak var tipSegment: UISegmentedControl!
+    var defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +30,27 @@ class ViewController: UIViewController {
   
     @IBAction func onEdit(sender: AnyObject) {
         let tipArray = [0.10,0.20,0.30]
+        var defaultTipIndex = defaults.integerForKey("default_tip")
+        var tipAmount = 0.00
+        var defIndex = 0
         var billAmount = (billAmountField.text as NSString).doubleValue
-        var tipAmount = tipArray[tipSegment.selectedSegmentIndex]
+        
+        if tipSegment.selectedSegmentIndex < 0 {
+            tipAmount = tipArray[defaultTipIndex]
+            defIndex = defaultTipIndex
+        }
+        else{
+            tipAmount = tipArray[tipSegment.selectedSegmentIndex]
+            defIndex = tipSegment.selectedSegmentIndex
+        }
+       
         var tip = billAmount * tipAmount
         var total = billAmount + tip
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
+        var colors = [UIColor.greenColor, UIColor.yellowColor,UIColor.redColor]
+        
+        totalLabel.textColor = colors[defIndex]()
         
     }
     
