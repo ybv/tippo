@@ -10,4 +10,4 @@ Completed user stories:
 
 Video walkthrough:
 
-<img src='https://raw.githubusercontent.com/ybv/tippo/master/VWalk.giff' title='img' width='200' alt='walk' />
+<img src='https://github.com/ybv/tippo/master/VWalk.giff' title='img' width='200' alt='walk' />
