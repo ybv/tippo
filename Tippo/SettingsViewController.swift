@@ -15,6 +15,9 @@ class SettingsViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        var defaultTipIndex = defaults.integerForKey("default_tip")
+        
+        defaultTipSegment.selectedSegmentIndex = defaultTipIndex
 
         // Do any additional setup after loading the view.
     }
@@ -25,9 +28,11 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func defaltTipAmountChnaged(sender: AnyObject) {
-        println(sender.selectedSegmentIndex)
+        
         defaults.setInteger(sender.selectedSegmentIndex, forKey: "default_tip")
         defaults.synchronize()
+
+        
     }
 
     /*
